@@ -41,13 +41,13 @@
             top: 0;
             background: var(--bg-card);
             z-index: 1000;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
         }
 
         .header-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1.25rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -109,25 +109,15 @@
             box-shadow: 0 4px 12px rgba(229, 35, 32, 0.3);
         }
 
-        /* Hero Section */
-        .hero-slider {
+        /* Hero Section - Bundle 6.0 */
+        .hero-section {
             position: relative;
-            min-height: 700px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #E8E8E8 0%, #F0F0F0 100%);
-            padding: 4rem 0;
-        }
-
-        .slide {
-            width: 100%;
-            height: 100%;
+            min-height: 750px;
             display: flex;
             align-items: center;
-            justify-content: center;
-        }
-
-        .slide.active {
-            opacity: 1;
+            overflow: hidden;
+            background: var(--bg-light);
+            padding: 3rem 0;
         }
 
         .slide-content-wrapper {
@@ -203,6 +193,7 @@
             color: var(--text-primary);
             font-weight: 500;
             line-height: 1.4;
+            letter-spacing: -0.01em;
         }
 
         /* Phone Mockup */
@@ -215,7 +206,7 @@
 
         .phone-mockup {
             width: 380px;
-            height: 760px;
+            height: 800px;
             background: #000;
             border-radius: 40px;
             padding: 10px;
@@ -227,13 +218,14 @@
         .phone-mockup::before {
             content: '';
             position: absolute;
-            top: 30px;
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 150px;
-            height: 30px;
+            width: 120px;
+            height: 25px;
             background: #000;
-            border-radius: 20px;
+            border-radius: 0 0 18px 18px;
+            z-index: 10;
         }
 
         .phone-screen {
@@ -257,10 +249,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 20px 8px;
+            padding: 14px 24px 10px;
             background: white;
             font-size: 14px;
+        }
+
+        .status-bar .time {
             font-weight: 600;
+            color: var(--text-primary);
         }
 
         .status-icons {
@@ -317,22 +313,28 @@
         /* Scrolling content */
         .scrolling-content {
             height: calc(100% - 100px);
-            overflow: hidden;
+            overflow-y: auto;
             position: relative;
+            background: #f8f8f8;
+            scrollbar-width: thin;
+            scrollbar-color: #ddd #f8f8f8;
+        }
+
+        .scrolling-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scrolling-content::-webkit-scrollbar-track {
             background: #f8f8f8;
         }
 
-        .scroll-wrapper {
-            animation: scrollUp 25s linear infinite;
+        .scrolling-content::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 3px;
         }
 
-        @keyframes scrollUp {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-50%);
-            }
+        .scrolling-content::-webkit-scrollbar-thumb:hover {
+            background: #ccc;
         }
 
         /* Content cards */
@@ -465,6 +467,12 @@
             font-weight: 600;
         }
 
+        .ai-icon {
+            display: inline-flex;
+            align-items: center;
+            color: var(--red);
+        }
+
         .audio-player {
             display: flex;
             align-items: center;
@@ -486,6 +494,7 @@
             justify-content: center;
             cursor: pointer;
             font-size: 16px;
+            flex-shrink: 0;
         }
 
         .progress-bar {
@@ -502,13 +511,13 @@
             border-radius: 2px;
         }
 
-        .time {
+        .audio-player .time {
             font-size: 12px;
             color: var(--text-secondary);
             font-weight: 500;
         }
 
-        /* NEW: Redesigned Stats Section with Wheel */
+        /* NEW: Redesigned Stats Section with Endless Wheel */
         .stats-section {
             padding: 5rem 0;
             background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
@@ -524,7 +533,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
-            min-height: 600px;
+            min-height: 700px;
         }
 
         /* Left side - Static Quote */
@@ -567,158 +576,171 @@
             letter-spacing: -0.01em;
         }
 
-        /* Right side - Wheel Interface */
+        /* Right side - Endless Wheel Interface */
         .wheel-container {
             position: relative;
-            height: 500px;
+            height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .wheel {
+        .endless-wheel {
             position: relative;
-            width: 400px;
-            height: 400px;
-            transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 500px;
+            height: 500px;
+            animation: rotateWheel 40s linear infinite;
         }
 
-        .wheel-segment {
+        @keyframes rotateWheel {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .wheel-category {
             position: absolute;
-            width: 200px;
-            height: 80px;
-            left: 50%;
-            top: 50%;
-            transform-origin: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .segment-content {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+            width: 140px;
             padding: 1.5rem;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             backdrop-filter: blur(10px);
+            transform-origin: center;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .wheel-segment:hover .segment-content {
-            background: rgba(229, 35, 32, 0.15);
-            border-color: rgba(229, 35, 32, 0.5);
-            transform: scale(1.05);
-        }
-
-        .wheel-segment.active .segment-content {
-            background: var(--red);
+        .wheel-category:hover {
+            background: rgba(229, 35, 32, 0.2);
             border-color: var(--red);
-            box-shadow: 0 0 30px rgba(229, 35, 32, 0.5);
+            transform: scale(1.1);
         }
 
-        .segment-icon {
-            font-size: 1.75rem;
-            margin-right: 0.75rem;
+        .category-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
-        .segment-label {
+        .category-name {
+            font-size: 1.125rem;
             font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
         }
 
-        /* Stats Display */
-        .stats-display {
+        .category-stats {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .category-stat {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-number {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Position categories in a circle */
+        .wheel-category:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(-0deg);
+        }
+
+        .wheel-category:nth-child(2) {
+            top: 12%;
+            right: 12%;
+            transform: rotate(-45deg);
+        }
+
+        .wheel-category:nth-child(3) {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%) rotate(-90deg);
+        }
+
+        .wheel-category:nth-child(4) {
+            bottom: 12%;
+            right: 12%;
+            transform: rotate(-135deg);
+        }
+
+        .wheel-category:nth-child(5) {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(-180deg);
+        }
+
+        .wheel-category:nth-child(6) {
+            bottom: 12%;
+            left: 12%;
+            transform: rotate(-225deg);
+        }
+
+        .wheel-category:nth-child(7) {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%) rotate(-270deg);
+        }
+
+        .wheel-category:nth-child(8) {
+            top: 12%;
+            left: 12%;
+            transform: rotate(-315deg);
+        }
+
+        /* Counter-rotate content to keep it upright */
+        .category-content {
+            animation: counterRotate 40s linear infinite;
+        }
+
+        @keyframes counterRotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        /* Central indicator */
+        .wheel-center {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            text-align: center;
-            pointer-events: none;
-        }
-
-        .stat-category-name {
-            font-size: 1.375rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeIn 0.5s ease-out forwards;
-            letter-spacing: -0.02em;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        .stat-grid {
-            display: grid;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 2rem;
-            opacity: 0;
-            animation: slideUp 0.5s ease-out forwards;
-        }
-
-        .stat-row:nth-child(1) { animation-delay: 0.1s; }
-        .stat-row:nth-child(2) { animation-delay: 0.2s; }
-        .stat-row:nth-child(3) { animation-delay: 0.3s; }
-
-        @keyframes slideUp {
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-        }
-
-        .stat-label {
-            color: var(--text-light);
-            font-size: 0.875rem;
-            font-weight: 400;
-        }
-
-        .stat-value {
-            color: white;
-            font-weight: 600;
-            font-size: 1.125rem;
-            letter-spacing: -0.01em;
-        }
-
-        /* Navigation dots */
-        .wheel-nav {
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .wheel-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .wheel-dot.active {
+            width: 80px;
+            height: 80px;
             background: var(--red);
-            width: 24px;
-            border-radius: 4px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(229, 35, 32, 0.6);
+            z-index: 10;
+        }
+
+        .wheel-center::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 25px solid var(--red);
+        }
+
+        .center-icon {
+            font-size: 2rem;
+            color: white;
         }
 
         /* Brand Logos */
@@ -726,6 +748,7 @@
             background: var(--bg-card);
             padding: 3rem 0;
             border-bottom: 1px solid var(--border);
+            overflow: hidden;
         }
 
         .container {
@@ -734,32 +757,45 @@
             padding: 0 2rem;
         }
 
-        .brand-logos {
-            display: flex;
-            gap: 3rem;
-            align-items: center;
-            overflow-x: auto;
-            padding: 2rem 0;
-            scrollbar-width: none;
+        .brand-logos-wrapper {
+            position: relative;
+            overflow: hidden;
         }
 
-        .brand-logos::-webkit-scrollbar {
-            display: none;
+        .brand-logos {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            padding: 2rem 0;
+            animation: scrollBrands 30s linear infinite;
+            width: fit-content;
+        }
+
+        @keyframes scrollBrands {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .brand-logo {
             flex-shrink: 0;
-            font-size: 1.125rem;
-            font-weight: 500;
-            color: var(--text-light);
-            opacity: 0.8;
-            transition: all 0.2s;
-            letter-spacing: -0.01em;
+            height: 40px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            filter: grayscale(100%);
         }
 
         .brand-logo:hover {
             opacity: 1;
-            color: var(--text-secondary);
+            filter: grayscale(0%);
+        }
+
+        .brand-logo svg {
+            height: 100%;
+            width: auto;
         }
 
         /* Ad Formats Cards */
@@ -1169,9 +1205,9 @@
                 display: none;
             }
 
-            .hero-slider {
-                min-height: 100vh;
-                padding: 2rem 0;
+            .hero-section {
+                min-height: auto;
+                padding: 3rem 0;
             }
 
             .slide-content-wrapper {
@@ -1199,7 +1235,7 @@
 
             .phone-mockup {
                 width: 280px;
-                height: 560px;
+                height: 600px;
             }
 
             .stats-container {
@@ -1213,6 +1249,42 @@
 
             .quote-number {
                 font-size: 3.5rem;
+            }
+
+            .wheel-container {
+                height: 500px;
+            }
+
+            .endless-wheel {
+                width: 350px;
+                height: 350px;
+            }
+
+            .wheel-category {
+                width: 100px;
+                padding: 1rem;
+            }
+
+            .category-icon {
+                font-size: 1.5rem;
+            }
+
+            .category-name {
+                font-size: 0.875rem;
+            }
+
+            .category-stats {
+                font-size: 0.75rem;
+            }
+
+            .wheel-center {
+                width: 60px;
+                height: 60px;
+            }
+
+            .center-icon {
+                font-size: 1.5rem;
+            }rem;
             }
 
             .wheel {
@@ -1269,187 +1341,191 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-slider">
-        <div class="slide active">
-            <div class="slide-content-wrapper">
-                <div class="slide-content">
-                    <h1><span class="hero-brand">Bundle</span> <span class="hero-version">6.0</span></h1>
-                    <p>Dijital Medya Deneyimi Yepyeni<br>Bir Boyuta Taşınıyor</p>
-                    <div class="hero-cta">
-                        <div class="qr-section">
-                            <div class="qr-code">
-                                <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-                                    <rect width="120" height="120" fill="white" rx="8"/>
-                                    <!-- QR Code Pattern -->
-                                    <g fill="#000">
-                                        <!-- Position markers -->
-                                        <rect x="10" y="10" width="40" height="40" rx="4"/>
-                                        <rect x="15" y="15" width="30" height="30" fill="white" rx="2"/>
-                                        <rect x="20" y="20" width="20" height="20" rx="2"/>
-                                        
-                                        <rect x="70" y="10" width="40" height="40" rx="4"/>
-                                        <rect x="75" y="15" width="30" height="30" fill="white" rx="2"/>
-                                        <rect x="80" y="20" width="20" height="20" rx="2"/>
-                                        
-                                        <rect x="10" y="70" width="40" height="40" rx="4"/>
-                                        <rect x="15" y="75" width="30" height="30" fill="white" rx="2"/>
-                                        <rect x="20" y="80" width="20" height="20" rx="2"/>
-                                        
-                                        <!-- Data pattern -->
-                                        <rect x="55" y="10" width="5" height="5"/>
-                                        <rect x="55" y="20" width="5" height="5"/>
-                                        <rect x="65" y="15" width="5" height="5"/>
-                                        <rect x="10" y="55" width="5" height="5"/>
-                                        <rect x="20" y="55" width="5" height="5"/>
-                                        <rect x="30" y="55" width="5" height="5"/>
-                                        <rect x="40" y="55" width="5" height="5"/>
-                                        <rect x="55" y="55" width="5" height="5"/>
-                                        <rect x="65" y="55" width="5" height="5"/>
-                                        <rect x="75" y="55" width="5" height="5"/>
-                                        <rect x="85" y="55" width="5" height="5"/>
-                                        <rect x="95" y="55" width="5" height="5"/>
-                                        <rect x="105" y="55" width="5" height="5"/>
-                                        <rect x="55" y="65" width="5" height="5"/>
-                                        <rect x="65" y="65" width="5" height="5"/>
-                                        <rect x="75" y="65" width="5" height="5"/>
-                                        <rect x="85" y="65" width="5" height="5"/>
-                                        <rect x="95" y="65" width="5" height="5"/>
-                                        <rect x="55" y="75" width="5" height="5"/>
-                                        <rect x="55" y="85" width="5" height="5"/>
-                                        <rect x="65" y="85" width="5" height="5"/>
-                                        <rect x="55" y="95" width="5" height="5"/>
-                                        <rect x="65" y="95" width="5" height="5"/>
-                                        <rect x="75" y="95" width="5" height="5"/>
-                                        <rect x="85" y="95" width="5" height="5"/>
-                                        <rect x="95" y="95" width="5" height="5"/>
-                                        <rect x="55" y="105" width="5" height="5"/>
-                                        <rect x="65" y="105" width="5" height="5"/>
-                                        <rect x="75" y="105" width="5" height="5"/>
-                                        <rect x="85" y="105" width="5" height="5"/>
-                                        <rect x="95" y="105" width="5" height="5"/>
-                                        <rect x="105" y="105" width="5" height="5"/>
-                                    </g>
-                                </svg>
-                            </div>
-                            <p class="qr-text">Bundle 6.0'ı<br>deneyimlemek<br>için indir.</p>
+    <!-- Hero Section - Bundle 6.0 -->
+    <section class="hero-section">
+        <div class="slide-content-wrapper">
+            <div class="slide-content">
+                <h1><span class="hero-brand">Bundle</span> <span class="hero-version">6.0</span></h1>
+                <p>Dijital Medya Deneyimi Yepyeni<br>Bir Boyuta Taşınıyor</p>
+                <div class="hero-cta">
+                    <div class="qr-section">
+                        <div class="qr-code">
+                            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+                                <rect width="120" height="120" fill="white" rx="8"/>
+                                <!-- QR Code Pattern -->
+                                <g fill="#000">
+                                    <!-- Position markers -->
+                                    <rect x="10" y="10" width="40" height="40" rx="4"/>
+                                    <rect x="15" y="15" width="30" height="30" fill="white" rx="2"/>
+                                    <rect x="20" y="20" width="20" height="20" rx="2"/>
+                                    
+                                    <rect x="70" y="10" width="40" height="40" rx="4"/>
+                                    <rect x="75" y="15" width="30" height="30" fill="white" rx="2"/>
+                                    <rect x="80" y="20" width="20" height="20" rx="2"/>
+                                    
+                                    <rect x="10" y="70" width="40" height="40" rx="4"/>
+                                    <rect x="15" y="75" width="30" height="30" fill="white" rx="2"/>
+                                    <rect x="20" y="80" width="20" height="20" rx="2"/>
+                                    
+                                    <!-- Data pattern -->
+                                    <rect x="55" y="10" width="5" height="5"/>
+                                    <rect x="55" y="20" width="5" height="5"/>
+                                    <rect x="65" y="15" width="5" height="5"/>
+                                    <rect x="10" y="55" width="5" height="5"/>
+                                    <rect x="20" y="55" width="5" height="5"/>
+                                    <rect x="30" y="55" width="5" height="5"/>
+                                    <rect x="40" y="55" width="5" height="5"/>
+                                    <rect x="55" y="55" width="5" height="5"/>
+                                    <rect x="65" y="55" width="5" height="5"/>
+                                    <rect x="75" y="55" width="5" height="5"/>
+                                    <rect x="85" y="55" width="5" height="5"/>
+                                    <rect x="95" y="55" width="5" height="5"/>
+                                    <rect x="105" y="55" width="5" height="5"/>
+                                    <rect x="55" y="65" width="5" height="5"/>
+                                    <rect x="65" y="65" width="5" height="5"/>
+                                    <rect x="75" y="65" width="5" height="5"/>
+                                    <rect x="85" y="65" width="5" height="5"/>
+                                    <rect x="95" y="65" width="5" height="5"/>
+                                    <rect x="55" y="75" width="5" height="5"/>
+                                    <rect x="55" y="85" width="5" height="5"/>
+                                    <rect x="65" y="85" width="5" height="5"/>
+                                    <rect x="55" y="95" width="5" height="5"/>
+                                    <rect x="65" y="95" width="5" height="5"/>
+                                    <rect x="75" y="95" width="5" height="5"/>
+                                    <rect x="85" y="95" width="5" height="5"/>
+                                    <rect x="95" y="95" width="5" height="5"/>
+                                    <rect x="55" y="105" width="5" height="5"/>
+                                    <rect x="65" y="105" width="5" height="5"/>
+                                    <rect x="75" y="105" width="5" height="5"/>
+                                    <rect x="85" y="105" width="5" height="5"/>
+                                    <rect x="95" y="105" width="5" height="5"/>
+                                    <rect x="105" y="105" width="5" height="5"/>
+                                </g>
+                            </svg>
                         </div>
+                        <p class="qr-text">Bundle 6.0'ı<br>deneyimlemek<br>için indir.</p>
                     </div>
                 </div>
-                <div class="hero-phone">
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <div class="screen-content">
-                                <!-- Status bar -->
-                                <div class="status-bar">
-                                    <span class="time">9:41</span>
-                                    <div class="status-icons">
-                                        <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
-                                            <rect x="1" y="7" width="3" height="5" fill="black"/>
-                                            <rect x="5" y="5" width="3" height="7" fill="black"/>
-                                            <rect x="9" y="3" width="3" height="9" fill="black"/>
-                                            <rect x="13" y="1" width="3" height="11" fill="black"/>
-                                        </svg>
-                                        <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
-                                            <path d="M1 4C3 1 5 0 7.5 0C10 0 12 1 14 4" stroke="black" stroke-width="1.5" fill="none"/>
-                                            <path d="M3 6C4 4 5.5 3.5 7.5 3.5C9.5 3.5 11 4 12 6" stroke="black" stroke-width="1.5" fill="none"/>
-                                            <circle cx="7.5" cy="8.5" r="1.5" fill="black"/>
-                                        </svg>
-                                        <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
-                                            <rect x="1" y="2" width="21" height="8" rx="2" stroke="black" stroke-width="1"/>
-                                            <rect x="23" y="5" width="1" height="2" fill="black"/>
-                                            <rect x="2" y="3" width="19" height="6" rx="1" fill="black"/>
-                                        </svg>
+            </div>
+            <div class="hero-phone">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="screen-content">
+                            <!-- Status bar -->
+                            <div class="status-bar">
+                                <span class="time">9:41</span>
+                                <div class="status-icons">
+                                    <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+                                        <rect x="1" y="7" width="3" height="5" fill="black"/>
+                                        <rect x="5" y="5" width="3" height="7" fill="black"/>
+                                        <rect x="9" y="3" width="3" height="9" fill="black"/>
+                                        <rect x="13" y="1" width="3" height="11" fill="black"/>
+                                    </svg>
+                                    <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
+                                        <path d="M1 4C3 1 5 0 7.5 0C10 0 12 1 14 4" stroke="black" stroke-width="1.5" fill="none"/>
+                                        <path d="M3 6C4 4 5.5 3.5 7.5 3.5C9.5 3.5 11 4 12 6" stroke="black" stroke-width="1.5" fill="none"/>
+                                        <circle cx="7.5" cy="8.5" r="1.5" fill="black"/>
+                                    </svg>
+                                    <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+                                        <rect x="1" y="2" width="21" height="8" rx="2" stroke="black" stroke-width="1"/>
+                                        <rect x="23" y="5" width="1" height="2" fill="black"/>
+                                        <rect x="2" y="3" width="19" height="6" rx="1" fill="black"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <!-- App header -->
+                            <div class="app-header">
+                                <div class="menu-icon">☰</div>
+                                <div class="header-tabs">
+                                    <span class="tab active">Öne Çıkanlar</span>
+                                    <span class="tab">Tümü</span>
+                                    <span class="tab">Bilim</span>
+                                    <span class="tab">Teknoloji</span>
+                                </div>
+                                <div class="filter-icon">⫶</div>
+                            </div>
+
+                            <!-- Scrolling content -->
+                            <div class="scrolling-content">
+                                <!-- Ad banner -->
+                                <div class="ad-banner">
+                                    <span class="ad-label">Reklam Alanı</span>
+                                    <span class="arrow">›</span>
+                                </div>
+
+                                <!-- Content cards -->
+                                <div class="content-card weather-card">
+                                    <div class="weather-info">
+                                        <span class="popular-tag">🔴 POPÜLER</span>
+                                        <span class="weather-text">İstanbul'da Hava</span>
+                                        <span class="temp">16°</span>
                                     </div>
                                 </div>
-                                
-                                <!-- App header -->
-                                <div class="app-header">
-                                    <div class="menu-icon">☰</div>
-                                    <div class="header-tabs">
-                                        <span class="tab active">Öne Çıkanlar</span>
-                                        <span class="tab">Tümü</span>
-                                        <span class="tab">Bilim</span>
-                                        <span class="tab">Teknoloji</span>
+
+                                <div class="content-card breaking-news">
+                                    <div class="breaking-header">
+                                        <span class="dot">●</span>
+                                        <span>SON DAKİKA</span>
                                     </div>
-                                    <div class="filter-icon">⫶</div>
+                                    <div class="breaking-visual"></div>
                                 </div>
 
-                                <!-- Scrolling content -->
-                                <div class="scrolling-content">
-                                    <div class="scroll-wrapper">
-                                        <!-- Ad banner -->
-                                        <div class="ad-banner">
-                                            <span class="ad-label">Advertising Text Area</span>
-                                            <span class="arrow">›</span>
-                                        </div>
-
-                                        <!-- Content cards -->
-                                        <div class="content-card weather-card">
-                                            <div class="weather-info">
-                                                <span class="popular-tag">🔴 POPÜLER</span>
-                                                <span class="weather-text">Çiseleyen Yağmur</span>
-                                                <span class="temp">16°</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="content-card breaking-news">
-                                            <div class="breaking-header">
-                                                <span class="dot">●</span>
-                                                <span>SON DAKİKA</span>
-                                            </div>
-                                            <div class="breaking-visual"></div>
-                                        </div>
-
-                                        <div class="content-card article-card">
-                                            <div class="brand-tag">
-                                                <span class="brand-dot">●</span>
-                                                <span>BRAND NAME</span>
-                                                <span class="ad-label">ADVERTISING</span>
-                                            </div>
-                                            <p class="article-text">Lorem ipsum dolor sit amet consectetur. Vel etiam ac ultricies sit habitant fermentum sed. Mattis.</p>
-                                        </div>
-
-                                        <div class="content-card ai-summary">
-                                            <div class="ai-header">
-                                                <span class="ai-icon">🤖</span>
-                                                <span>Bundle AI Günün Özetini Dinle</span>
-                                            </div>
-                                            <div class="audio-player">
-                                                <button class="play-btn">⏸</button>
-                                                <div class="progress-bar">
-                                                    <div class="progress" style="width: 75%"></div>
-                                                </div>
-                                                <span class="time">3:32 / 4:33</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="content-card article-card">
-                                            <p class="article-text">Lorem ipsum dolor sit amet</p>
-                                        </div>
-
-                                        <!-- Duplicate for continuous scroll -->
-                                        <div class="ad-banner">
-                                            <span class="ad-label">Advertising Text Area</span>
-                                            <span class="arrow">›</span>
-                                        </div>
-
-                                        <div class="content-card weather-card">
-                                            <div class="weather-info">
-                                                <span class="popular-tag">🔴 POPÜLER</span>
-                                                <span class="weather-text">Çiseleyen Yağmur</span>
-                                                <span class="temp">16°</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="content-card breaking-news">
-                                            <div class="breaking-header">
-                                                <span class="dot">●</span>
-                                                <span>SON DAKİKA</span>
-                                            </div>
-                                            <div class="breaking-visual"></div>
-                                        </div>
+                                <div class="content-card article-card">
+                                    <div class="brand-tag">
+                                        <span class="brand-dot">●</span>
+                                        <span>BRAND NAME</span>
+                                        <span class="ad-label">REKLAM</span>
                                     </div>
+                                    <p class="article-text">Türkiye'nin en güncel haber uygulaması Bundle ile tüm haberleri anında takip edin. Kişiselleştirilmiş içerik deneyimi.</p>
+                                </div>
+
+                                <div class="content-card ai-summary">
+                                    <div class="ai-header">
+                                        <span class="ai-icon">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path d="M8 0L9.5 1.5L8 3L6.5 1.5L8 0Z"/>
+                                                <path d="M3 6.5L1.5 8L3 9.5L1.5 8L3 6.5Z"/>
+                                                <path d="M13 6.5L14.5 8L13 9.5L14.5 8L13 6.5Z"/>
+                                                <path d="M8 13L9.5 14.5L8 16L6.5 14.5L8 13Z"/>
+                                                <circle cx="8" cy="8" r="3" fill="currentColor"/>
+                                            </svg>
+                                        </span>
+                                        <span>Bundle AI Günün Özeti</span>
+                                    </div>
+                                    <div class="audio-player">
+                                        <button class="play-btn">
+                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="white">
+                                                <rect x="2" y="2" width="4" height="10" rx="1"/>
+                                                <rect x="8" y="2" width="4" height="10" rx="1"/>
+                                            </svg>
+                                        </button>
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 75%"></div>
+                                        </div>
+                                        <span class="time">3:32 / 4:33</span>
+                                    </div>
+                                </div>
+
+                                <div class="content-card article-card">
+                                    <p class="article-text">Yapay zeka teknolojileri hızla gelişmeye devam ediyor. Uzmanlar, 2025 yılının teknoloji trendlerini açıkladı.</p>
+                                </div>
+
+                                <div class="content-card weather-card">
+                                    <div class="weather-info">
+                                        <span class="popular-tag">📰 GÜNDEM</span>
+                                        <span class="weather-text">Ekonomi Haberleri</span>
+                                        <span class="temp">₺/$</span>
+                                    </div>
+                                </div>
+
+                                <div class="content-card article-card">
+                                    <div class="brand-tag">
+                                        <span class="brand-dot">●</span>
+                                        <span>TURKCELL</span>
+                                        <span class="ad-label">SPONSORLU</span>
+                                    </div>
+                                    <p class="article-text">Yeni nesil teknolojilerle tanışın. 5G hızında internet deneyimi için hemen başvurun.</p>
                                 </div>
                             </div>
                         </div>
@@ -1459,7 +1535,7 @@
         </div>
     </section>
 
-    <!-- NEW: Redesigned Stats Section with Wheel -->
+    <!-- NEW: Redesigned Stats Section with Endless Wheel -->
     <section class="stats-section" id="audience">
         <div class="stats-container">
             <!-- Left side - Static Quote -->
@@ -1469,75 +1545,102 @@
                 <p class="quote-subtitle">Tap into Turkey's most engaged mobile audience with precision targeting</p>
             </div>
 
-            <!-- Right side - Interactive Wheel -->
+            <!-- Right side - Endless Wheel -->
             <div class="wheel-container">
-                <div class="wheel" id="categoryWheel">
-                    <!-- Wheel segments will be dynamically positioned -->
-                    <div class="wheel-segment active" data-category="technology">
-                        <div class="segment-content">
-                            <span class="segment-icon">💻</span>
-                            <span class="segment-label">Technology</span>
+                <div class="endless-wheel">
+                    <!-- Categories positioned in circle -->
+                    <div class="wheel-category">
+                        <div class="category-content">
+                            <div class="category-icon">⚽</div>
+                            <div class="category-name">Sport</div>
+                            <div class="category-stats">
+                                <span class="category-stat"><span class="stat-number">1.2M</span> users</span>
+                                <span class="category-stat"><span class="stat-number">18%</span> CTR</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="wheel-segment" data-category="finance">
-                        <div class="segment-content">
-                            <span class="segment-icon">💰</span>
-                            <span class="segment-label">Finance</span>
+                    
+                    <div class="wheel-category">
+                        <div class="category-content">
+                            <div class="category-icon">🔬</div>
+                            <div class="category-name">Science</div>
+                            <div class="category-stats">
+                                <span class="category-stat"><span class="stat-number">480K</span> users</span>
+                                <span class="category-stat"><span class="stat-number">14%</span> CTR</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="wheel-segment" data-category="sports">
-                        <div class="segment-content">
-                            <span class="segment-icon">⚽</span>
-                            <span class="segment-label">Sports</span>
+                    
+                    <div class="wheel-category">
+                        <div class="category-content">
+                            <div class="category-icon">🎨</div>
+                            <div class="category-name">Art</div>
+                            <div class="category-stats">
+                                <span class="category-stat"><span class="stat-number">320K</span> users</span>
+                                <span class="category-stat"><span class="stat-number">12%</span> CTR</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="wheel-segment" data-category="lifestyle">
-                        <div class="segment-content">
-                            <span class="segment-icon">🌟</span>
-                            <span class="segment-label">Lifestyle</span>
+                    
+                    <div class="wheel-category">
+                        <div class="category-content">
+                            <div class="category-icon">💻</div>
+                            <div class="category-name">Technology</div>
+                            <div class="category-stats">
+                                <span class="category-stat"><span class="stat-number">850K</span> users</span>
+                                <span class="category-stat"><span class="stat-number">19%</span> CTR</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="wheel-segment" data-category="entertainment">
-                        <div class="segment-content">
-                            <span class="segment-icon">🎬</span>
-                            <span class="segment-label">Entertainment</span>
+                    
+                    <div class="wheel-category">
+                        <div class="category-content">
+                            <div class="category-icon">₿</div>
+                            <div class="category-name">Crypto</div>
+                            <div class="category-stats">
+                                <span class="category-stat"><span class="stat-number">450K</span> users</span>
+                                <span class="category-stat"><span class="stat-number">22%</span> CTR</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="wheel-segment" data-category="politics">
-                        <div class="segment-content">
-                            <span class="segment-icon">🏛️</span>
-                            <span class="segment-label">Politics</span>
+                    
+                    <div class="wheel-category">
+                        <div class="category-content">
+                            <div class="category-icon">🎭</div>
+                            <div class="category-name">Culture</div>
+                            <div class="category-stats">
+                                <span class="category-stat"><span class="stat-number">680K</span> users</span>
+                                <span class="category-stat"><span class="stat-number">11%</span> CTR</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wheel-category">
+                        <div class="category-content">
+                            <div class="category-icon">💼</div>
+                            <div class="category-name">Business</div>
+                            <div class="category-stats">
+                                <span class="category-stat"><span class="stat-number">920K</span> users</span>
+                                <span class="category-stat"><span class="stat-number">15%</span> CTR</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wheel-category">
+                        <div class="category-content">
+                            <div class="category-icon">🎬</div>
+                            <div class="category-name">Entertainment</div>
+                            <div class="category-stats">
+                                <span class="category-stat"><span class="stat-number">750K</span> users</span>
+                                <span class="category-stat"><span class="stat-number">16%</span> CTR</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Central stats display -->
-                <div class="stats-display" id="statsDisplay">
-                    <h3 class="stat-category-name">Technology</h3>
-                    <div class="stat-grid">
-                        <div class="stat-row">
-                            <span class="stat-label">Audience</span>
-                            <span class="stat-value" id="audienceValue">850K users</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Engagement</span>
-                            <span class="stat-value" id="engagementValue">12% CTR</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Time Spent</span>
-                            <span class="stat-value" id="timeValue">8.5 min</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Navigation dots -->
-                <div class="wheel-nav">
-                    <span class="wheel-dot active" data-index="0"></span>
-                    <span class="wheel-dot" data-index="1"></span>
-                    <span class="wheel-dot" data-index="2"></span>
-                    <span class="wheel-dot" data-index="3"></span>
-                    <span class="wheel-dot" data-index="4"></span>
-                    <span class="wheel-dot" data-index="5"></span>
+                
+                <!-- Central indicator -->
+                <div class="wheel-center">
+                    <span class="center-icon">📊</span>
                 </div>
             </div>
         </div>
@@ -1546,17 +1649,117 @@
     <!-- Brand Logos -->
     <section class="brand-section">
         <div class="container">
-            <div class="brand-logos">
-                <div class="brand-logo">Samsung</div>
-                <div class="brand-logo">Turkcell</div>
-                <div class="brand-logo">Coca-Cola</div>
-                <div class="brand-logo">P&G</div>
-                <div class="brand-logo">Vodafone</div>
-                <div class="brand-logo">Netflix</div>
-                <div class="brand-logo">Apple</div>
-                <div class="brand-logo">Dyson</div>
-                <div class="brand-logo">Sephora</div>
-                <div class="brand-logo">Trendyol</div>
+            <div class="brand-logos-wrapper">
+                <div class="brand-logos">
+                    <!-- First set of logos -->
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 40" fill="currentColor">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Samsung</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 40" fill="#E52320">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Turkcell</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 120 40" fill="#ED1C16">
+                            <path d="M10,20 Q15,10 20,20 T30,20 Q35,10 40,20 T50,20" stroke="#ED1C16" stroke-width="3" fill="none"/>
+                            <text x="0" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Coca-Cola</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 80 40" fill="#003DA5">
+                            <circle cx="20" cy="20" r="15" fill="#003DA5"/>
+                            <text x="40" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold">P&G</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 40" fill="#E60000">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Vodafone</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 80 40" fill="#E50914">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Netflix</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 80 40" fill="#A8B8C8">
+                            <path d="M40,5 L45,15 L55,15 L47,22 L50,32 L40,25 L30,32 L33,22 L25,15 L35,15 Z" fill="#A8B8C8"/>
+                            <text x="0" y="38" font-family="Arial, sans-serif" font-size="16">Apple</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 80 40" fill="#FF006E">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="300">dyson</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 40" fill="#000000">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="400">SEPHORA</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 40" fill="#F27A1A">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold">trendyol</text>
+                        </svg>
+                    </div>
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 40" fill="currentColor">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Samsung</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 40" fill="#E52320">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Turkcell</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 120 40" fill="#ED1C16">
+                            <path d="M10,20 Q15,10 20,20 T30,20 Q35,10 40,20 T50,20" stroke="#ED1C16" stroke-width="3" fill="none"/>
+                            <text x="0" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Coca-Cola</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 80 40" fill="#003DA5">
+                            <circle cx="20" cy="20" r="15" fill="#003DA5"/>
+                            <text x="40" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold">P&G</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 40" fill="#E60000">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Vodafone</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 80 40" fill="#E50914">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Netflix</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 80 40" fill="#A8B8C8">
+                            <path d="M40,5 L45,15 L55,15 L47,22 L50,32 L40,25 L30,32 L33,22 L25,15 L35,15 Z" fill="#A8B8C8"/>
+                            <text x="0" y="38" font-family="Arial, sans-serif" font-size="16">Apple</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 80 40" fill="#FF006E">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="300">dyson</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 40" fill="#000000">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="400">SEPHORA</text>
+                        </svg>
+                    </div>
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 40" fill="#F27A1A">
+                            <text x="0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold">trendyol</text>
+                        </svg>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1715,137 +1918,21 @@
     </div>
 
     <script>
-        // Category Wheel functionality
-        const categoryData = {
-            technology: {
-                name: "Technology",
-                audience: "850K users",
-                engagement: "12% CTR",
-                time: "8.5 min"
-            },
-            finance: {
-                name: "Finance",
-                audience: "620K users",
-                engagement: "15% CTR",
-                time: "7.2 min"
-            },
-            sports: {
-                name: "Sports",
-                audience: "1.2M users",
-                engagement: "18% CTR",
-                time: "12.3 min"
-            },
-            lifestyle: {
-                name: "Lifestyle",
-                audience: "480K users",
-                engagement: "10% CTR",
-                time: "6.8 min"
-            },
-            entertainment: {
-                name: "Entertainment",
-                audience: "750K users",
-                engagement: "14% CTR",
-                time: "9.1 min"
-            },
-            politics: {
-                name: "Politics",
-                audience: "920K users",
-                engagement: "11% CTR",
-                time: "10.5 min"
-            }
-        };
-
-        let currentRotation = 0;
-        let currentCategory = 0;
-        const segments = document.querySelectorAll('.wheel-segment');
-        const wheelDots = document.querySelectorAll('.wheel-dot');
-        const categoryNames = Object.keys(categoryData);
-
-        // Position segments in a circle
-        function positionSegments() {
-            const angleStep = 360 / segments.length;
-            segments.forEach((segment, index) => {
-                const angle = (index * angleStep) * Math.PI / 180;
-                const radius = 150; // Distance from center
-                const x = Math.cos(angle - Math.PI / 2) * radius;
-                const y = Math.sin(angle - Math.PI / 2) * radius;
-                
-                segment.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
+        // Pause wheel rotation on hover
+        const wheel = document.querySelector('.endless-wheel');
+        const categories = document.querySelectorAll('.wheel-category');
+        
+        categories.forEach(category => {
+            category.addEventListener('mouseenter', () => {
+                wheel.style.animationPlayState = 'paused';
+                category.querySelector('.category-content').style.animationPlayState = 'paused';
             });
-        }
-
-        // Update displayed stats
-        function updateStats(category) {
-            const data = categoryData[category];
-            const categoryNameEl = document.querySelector('.stat-category-name');
-            const audienceEl = document.getElementById('audienceValue');
-            const engagementEl = document.getElementById('engagementValue');
-            const timeEl = document.getElementById('timeValue');
-
-            // Trigger re-animation
-            categoryNameEl.style.animation = 'none';
-            document.querySelectorAll('.stat-row').forEach(row => row.style.animation = 'none');
             
-            setTimeout(() => {
-                categoryNameEl.textContent = data.name;
-                audienceEl.textContent = data.audience;
-                engagementEl.textContent = data.engagement;
-                timeEl.textContent = data.time;
-                
-                categoryNameEl.style.animation = 'fadeIn 0.5s ease-out forwards';
-                document.querySelectorAll('.stat-row').forEach((row, i) => {
-                    row.style.animation = `slideUp 0.5s ease-out ${0.1 * (i + 1)}s forwards`;
-                });
-            }, 50);
-        }
-
-        // Handle segment clicks
-        segments.forEach((segment, index) => {
-            segment.addEventListener('click', () => {
-                const targetAngle = -index * (360 / segments.length);
-                currentRotation = targetAngle;
-                currentCategory = index;
-                
-                document.getElementById('categoryWheel').style.transform = `rotate(${currentRotation}deg)`;
-                
-                // Update active states
-                segments.forEach(s => s.classList.remove('active'));
-                segment.classList.add('active');
-                
-                wheelDots.forEach(d => d.classList.remove('active'));
-                wheelDots[index].classList.add('active');
-                
-                // Update stats
-                updateStats(segment.dataset.category);
+            category.addEventListener('mouseleave', () => {
+                wheel.style.animationPlayState = 'running';
+                category.querySelector('.category-content').style.animationPlayState = 'running';
             });
         });
-
-        // Handle dot navigation
-        wheelDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                segments[index].click();
-            });
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                const newIndex = (currentCategory - 1 + segments.length) % segments.length;
-                segments[newIndex].click();
-            } else if (e.key === 'ArrowRight') {
-                const newIndex = (currentCategory + 1) % segments.length;
-                segments[newIndex].click();
-            }
-        });
-
-        // Initialize wheel
-        positionSegments();
-
-        // Auto-rotate wheel
-        setInterval(() => {
-            const nextIndex = (currentCategory + 1) % segments.length;
-            segments[nextIndex].click();
-        }, 5000);
 
         // Chatbot functionality
         const chatToggle = document.getElementById('chatbot-toggle');
