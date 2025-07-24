@@ -109,23 +109,21 @@
             box-shadow: 0 4px 12px rgba(229, 35, 32, 0.3);
         }
 
-        /* Hero Slider */
+        /* Hero Section */
         .hero-slider {
             position: relative;
-            height: 700px;
+            min-height: 700px;
             overflow: hidden;
             background: linear-gradient(135deg, #E8E8E8 0%, #F0F0F0 100%);
+            padding: 4rem 0;
         }
 
         .slide {
-            position: absolute;
             width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
         }
 
         .slide.active {
@@ -508,10 +506,7 @@
             font-size: 12px;
             color: var(--text-secondary);
             font-weight: 500;
-        }
-
-        /* Other slides */
-        .slide:not(:first-child) .slide-content {
+        }:not(:first-child) .slide-content {
             text-align: center;
             max-width: 900px;
             padding: 0 2rem;
@@ -1329,7 +1324,7 @@
         </div>
     </header>
 
-    <!-- Hero Slider -->
+    <!-- Hero Section -->
     <section class="hero-slider">
         <div class="slide active">
             <div class="slide-content-wrapper">
@@ -1516,23 +1511,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="slide">
-            <div class="slide-content">
-                <h1>98% user satisfaction rate</h1>
-                <p>Deliver your message to the most loyal audience</p>
-            </div>
-        </div>
-        <div class="slide">
-            <div class="slide-content">
-                <h1>190M monthly impressions</h1>
-                <p>Premium ad placements that drive results</p>
-            </div>
-        </div>
-        <div class="slider-dots">
-            <span class="dot active" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
         </div>
     </section>
 
