@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ad Models | Bundle</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #111;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+    }
+
+    nav .cta {
+      background: #e52320;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 4px;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .ad-model {
+      background: white;
+      padding: 24px;
+      margin: 24px 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .ad-model h2 {
+      margin-top: 0;
+    }
+
+    .ad-model p {
+      color: #666;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 30px;
+      color: #999;
+    }
+
+    #chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      max-height: 500px;
+      border-radius: 12px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Bundle</div>
+  <nav>
+    <a href="ad-models.html">Ad Models</a>
+    <a href="audience.html">Audience</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="index.html#contact" class="cta">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Reklam Modellerimiz</h1>
+  <p>Bundle'da sunulan yenilikçi reklam çözümleri ile markanızı doğru kullanıcılarla buluşturun.</p>
+
+  <div class="ad-model">
+    <h2>🌀 Carousel</h2>
+    <p>10 farklı görsel ile ürün hikayenizi adım adım anlatın. Her görsele ayrı link eklenebilir.</p>
+  </div>
+
+  <div class="ad-model">
+    <h2>🎧 Audio Ad</h2>
+    <p>Bundle AI Günlük Özeti sırasında kullanıcıya sesli olarak ulaşırsınız. Marka mesajınızı seslendirebiliriz.</p>
+  </div>
+
+  <div class="ad-model">
+    <h2>📬 Push Notification</h2>
+    <p>En doğrudan erişim. Haber formatında içerikle karışmadan kullanıcı ekranına düşen reklam bildirimleri.</p>
+  </div>
+
+  <div class="ad-model">
+    <h2>🧠 Native AI Prompts</h2>
+    <p>Bundle AI Studio'da markanız adına konuşan akıllı içerik kutucukları. Kullanıcıya deneyimle yaklaşır.</p>
+  </div>
+</main>
+
+<footer>
+  © 2025 Bundle Sales Hub. Tüm hakları saklıdır.
+</footer>
+
+<!-- Dummy chatbot placeholder -->
+<div id="chatbot-container">
+  <strong>🤖 Chatbot:</strong>
+  <p>Size nasıl yardımcı olabilirim?</p>
+</div>
+
+</body>
+</html>
